@@ -3,11 +3,12 @@ const ejs=require("ejs");
 const passport=require("passport");
 var Strategy =require("passport-facebook").Strategy;
 
+const port=process.env.PORT|| 3000;
 passport.use(new Strategy({
 
     clientID:"709592489466056",
     clientSecret:"bd93fe0e05519436ee0ee79fd52b11f3",
-    callbackURL:"http://localhost:3000/login/facebook/return"
+    callbackURL:"https://facebook-0auth.herokuapp.com/login/facebook/return"
 
 },
     function(accessToken,refreashToken,profile,cb){
@@ -61,4 +62,4 @@ app.get("/profile",require("connect-ensure-login").ensureLoggedIn(),(req,res)=>{
 
 });
 
-app.listen("3000",console.log("server is running....."));
+app.listen(port,console.log("server is running....."));
